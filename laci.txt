@@ -1,0 +1,5 @@
+Your name: laci
+Currency is: EUR
+Original price: 2132104610
+Result is: 4264211
+Time of calculate: 12000nanoseconds
