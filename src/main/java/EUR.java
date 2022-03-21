@@ -7,5 +7,4 @@ public class EUR extends Currency{
         super.setBankNotes(new int[] {500, 200, 100, 50, 20, 10, 5, 2, 1});
         super.setOriginalPrice(Math.abs(new Random().nextInt()));
     }
-
 }
