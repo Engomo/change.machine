@@ -1,10 +1,11 @@
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -13,20 +14,20 @@ public class Main {
 
         long startTime = System.nanoTime();
 
-        Currency[] currencies = new Currency[]{new EUR(), new HUF()};
         Random random = new Random();
-        Currency actualCurrency = currencies[random.nextInt(currencies.length)];
+        List<Currencies> currencies = Arrays.asList(Currencies.values());
+        ToChange actualChange = new ToChange(currencies.get(random.nextInt(currencies.size())),Math.abs(random.nextInt()));
 
         int result = 0;
-        int actualPrice = actualCurrency.getOriginalPrice();
+        int actualPrice = actualChange.getPriceToChange();
         StringBuilder detailResult = new StringBuilder();
 
-        for (int i = 0; i < actualCurrency.getBankNotes().length; i++) {
-            while (actualPrice >= actualCurrency.getBankNotes()[i]) {
-                int countItem = actualPrice / actualCurrency.getBankNotes()[i];
-                actualPrice = actualPrice % actualCurrency.getBankNotes()[i];
+        for (int i = 0; i < actualChange.getCurrency().bankNotes.length; i++) {
+            while (actualPrice >= actualChange.getCurrency().bankNotes[i]) {
+                int countItem = actualPrice / actualChange.getCurrency().bankNotes[i];
+                actualPrice = actualPrice % actualChange.getCurrency().bankNotes[i];
                 result += countItem;
-                detailResult.append(countItem + "x " + actualCurrency.getBankNotes()[i] + ", ");
+                detailResult.append(countItem + "x " + actualChange.getCurrency().bankNotes[i] + ", ");
             }
         }
 
@@ -34,9 +35,9 @@ public class Main {
 
         String fileName = name + ".txt";
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"))) {
-//            writer.write("Your name: " + name + "\n");
-            writer.write("Currency is: " + actualCurrency.getName() + "\n");
-            writer.write("Original price: " + actualCurrency.getOriginalPrice() + "\n");
+            writer.write("Your name: " + name + "\n");
+            writer.write("Currency is: " + actualChange.getCurrency().name() + "\n");
+            writer.write("Original price: " + actualChange.getPriceToChange() + "\n");
             writer.write("Result: " + result + " --> " + detailResult + "\n");
             writer.write("Time of calculate: " + totalTime + " nanoseconds");
         } catch (FileNotFoundException e) {
