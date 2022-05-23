@@ -1,5 +1,5 @@
 Your name: laci
-Currency is: HUF
-Original price: 1219350974
-Result: 60973 --> 60967x 20000, 1x 10000, 1x 500, 2x 200, 1x 50, 1x 20, 
-Time of calculate: 9493700 nanoseconds
+Currency is: EUR
+Original price: 1356164937
+Result: 2712335 --> 2712329x 500, 2x 200, 1x 20, 1x 10, 1x 5, 1x 2, 
+Time of calculate: 10455100 nanoseconds

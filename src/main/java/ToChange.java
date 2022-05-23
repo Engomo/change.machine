@@ -16,4 +16,23 @@ public class ToChange {
     public int getPriceToChange() {
         return priceToChange;
     }
+
+    public int roundThePriceIfNeeded() {
+        if (this.getCurrency() == Currencies.HUF) {
+            int num = this.priceToChange;
+
+            if (num % 5 == 0) {
+                return num;
+            } else if (num % 5 <= 2) {
+
+                num = num - num % 5;
+                return num;
+            } else {
+                num = num + (5 - num % 5);
+                return num;
+            }
+        } else {
+            return priceToChange;
+        }
+    }
 }

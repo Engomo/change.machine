@@ -17,6 +17,7 @@ public class Main {
         Random random = new Random();
         List<Currencies> currencies = Arrays.asList(Currencies.values());
         ToChange actualChange = new ToChange(currencies.get(random.nextInt(currencies.size())),Math.abs(random.nextInt()));
+        actualChange.roundThePriceIfNeeded();
 
         int result = 0;
         int actualPrice = actualChange.getPriceToChange();
