@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Insert your name: ");
+        System.out.println("Enter your name: ");
         String name = scanner.nextLine();
 
         long startTime = System.nanoTime();
@@ -48,12 +48,12 @@ public class Main {
     }
 
     private static int getResult(ToChange actualChange, int result, int actualPrice, StringBuilder detailResult) {
-        for (int i = 0; i < actualChange.getCurrency().bankNotes.length; i++) {
-            while (actualPrice >= actualChange.getCurrency().bankNotes[i]) {
-                int countItem = actualPrice / actualChange.getCurrency().bankNotes[i];
-                actualPrice = actualPrice % actualChange.getCurrency().bankNotes[i];
+        for (int i = 0; i < actualChange.getCurrency().getBankNotesSortedDesc().size(); i++) {
+            while (actualPrice >= actualChange.getCurrency().getBankNotesSortedDesc().get(i)) {
+                int countItem = actualPrice / actualChange.getCurrency().getBankNotesSortedDesc().get(i);
+                actualPrice = actualPrice % actualChange.getCurrency().getBankNotesSortedDesc().get(i);
                 result += countItem;
-                detailResult.append(countItem + "x " + actualChange.getCurrency().bankNotes[i] + ", ");
+                detailResult.append(countItem + "x " + actualChange.getCurrency().getBankNotesSortedDesc().get(i) + ", ");
             }
         }
         return result;

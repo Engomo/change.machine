@@ -5,6 +5,9 @@ public class ToChange {
     private int priceToChange;
 
     public ToChange(Currencies currency, int priceToChange) {
+        if (priceToChange < 0) {
+            throw new IllegalArgumentException("Nem lehet negatív!");
+        }
         this.currency = currency;
         this.priceToChange = priceToChange;
     }
