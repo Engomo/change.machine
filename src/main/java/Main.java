@@ -1,8 +1,5 @@
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -13,8 +10,9 @@ public class Main {
         String name = scanner.nextLine();
 
         long startTime = System.nanoTime();
-        
+
         ToChange actualChange = ToChange.createRandomToChange();
+//        ToChange actualChange = new ToChange(Currencies.HUF, 694977313);
         actualChange.roundThePriceIfNeeded();
 
         int result = 0;

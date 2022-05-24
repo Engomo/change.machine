@@ -25,7 +25,7 @@ public class ToChange {
     }
 
     public int roundThePriceIfNeeded() {
-        if (this.getCurrency() == Currencies.HUF) {
+        if (this.getCurrency().isRoundable()) {
             return roundHUF();
         } else {
             return this.priceToChange;
@@ -33,17 +33,14 @@ public class ToChange {
     }
 
     private int roundHUF() {
-        int num = this.priceToChange;
-
-        if (num % 5 == 0) {
-            return num;
-        } else if (num % 5 <= 2) {
-
-            num = num - num % 5;
-            return num;
+        if (this.priceToChange % 5 == 0) {
+            return this.priceToChange;
+        } else if (this.priceToChange % 5 <= 2) {
+            this.priceToChange = this.priceToChange - this.priceToChange % 5;
+            return this.priceToChange;
         } else {
-            num = num + (5 - num % 5);
-            return num;
+            this.priceToChange = this.priceToChange + (5 - this.priceToChange % 5);
+            return this.priceToChange;
         }
     }
 

@@ -18,4 +18,14 @@ public enum Currencies {
         bankNoteList.sort(Collections.reverseOrder());
         return bankNoteList;
     }
+
+    public boolean isRoundable(){
+        ArrayList<Integer> bankNoteList = new ArrayList<>(getBankNotesSortedDesc());
+        if(bankNoteList.get(bankNoteList.size() - 1) != 1){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
