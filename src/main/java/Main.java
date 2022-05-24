@@ -23,17 +23,14 @@ public class Main {
         int actualPrice = actualChange.getPriceToChange();
         StringBuilder detailResult = new StringBuilder();
 
-        for (int i = 0; i < actualChange.getCurrency().bankNotes.length; i++) {
-            while (actualPrice >= actualChange.getCurrency().bankNotes[i]) {
-                int countItem = actualPrice / actualChange.getCurrency().bankNotes[i];
-                actualPrice = actualPrice % actualChange.getCurrency().bankNotes[i];
-                result += countItem;
-                detailResult.append(countItem + "x " + actualChange.getCurrency().bankNotes[i] + ", ");
-            }
-        }
+        result = getResult(actualChange, result, actualPrice, detailResult);
 
         long totalTime = System.nanoTime() - startTime;
 
+        writeTheFile(name, actualChange, result, detailResult, totalTime);
+    }
+
+    private static void writeTheFile(String name, ToChange actualChange, int result, StringBuilder detailResult, long totalTime) {
         String fileName = name + ".txt";
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"))) {
             writer.write("Your name: " + name + "\n");
@@ -48,5 +45,17 @@ public class Main {
         } catch (IOException e) {
             e.getMessage();
         }
+    }
+
+    private static int getResult(ToChange actualChange, int result, int actualPrice, StringBuilder detailResult) {
+        for (int i = 0; i < actualChange.getCurrency().bankNotes.length; i++) {
+            while (actualPrice >= actualChange.getCurrency().bankNotes[i]) {
+                int countItem = actualPrice / actualChange.getCurrency().bankNotes[i];
+                actualPrice = actualPrice % actualChange.getCurrency().bankNotes[i];
+                result += countItem;
+                detailResult.append(countItem + "x " + actualChange.getCurrency().bankNotes[i] + ", ");
+            }
+        }
+        return result;
     }
 }
