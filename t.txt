@@ -1,0 +1,5 @@
+Your name: t
+Currency is: EUR
+Original price: 1470367308
+Result: 2940739 --> 2940734x 500, 1x 200, 1x 100, 1x 5, 1x 2, 1x 1, 
+Time of calculate: 15823000 nanoseconds
