@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 public class ToChange {
 
     private Currencies currency;
@@ -41,5 +45,14 @@ public class ToChange {
             num = num + (5 - num % 5);
             return num;
         }
+    }
+
+    public static ToChange createRandomToChange(){
+        Random random = new Random();
+        int priceToChange = Math.abs(random.nextInt());
+        List<Currencies> currencies = Arrays.asList(Currencies.values());
+        Currencies currency = currencies.get(random.nextInt(currencies.size()));
+        ToChange randomToChange = new ToChange(currency, priceToChange);
+        return randomToChange;
     }
 }
